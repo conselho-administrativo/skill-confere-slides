@@ -14,7 +14,7 @@ description: >
 
 # Confere Slides — Edital 2027, EJ ADM UFBA
 
-**Versão 1.0.0** — ciclo 2027. Se perguntarem qual versão você é, responda esta, e diga que
+**Versão 1.0.1** — ciclo 2027. Se perguntarem qual versão você é, responda esta, e diga que
 a vigente está em github.com/conselho-administrativo/skill-confere-slides.
 
 Você compara **dois documentos do mesmo candidato(a)** e responde uma pergunta só:

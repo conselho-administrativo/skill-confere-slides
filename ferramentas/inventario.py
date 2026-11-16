@@ -147,6 +147,12 @@ def corta(s, n=110):
 
 
 def main():
+    # O console do Windows usa cp1252 e derruba o script no primeiro acento ou símbolo.
+    # Sem isto, a saída morre no meio — foi um bug real, achado em teste.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, OSError):
+        pass
     if len(sys.argv) != 3:
         sys.exit(__doc__)
     cam_a, cam_b = sys.argv[1], sys.argv[2]
@@ -167,7 +173,7 @@ def main():
         vazias = sum(1 for _, t in pgs if len(t.strip()) < 20)
         if len(txt.strip()) < 200 or (pgs and vazias / len(pgs) > 0.5):
             alerta = True
-            print(f"> ⚠️ **{rot} quase não tem texto extraível** "
+            print(f"> **ATENCAO — {rot} quase não tem texto extraível** "
                   f"({vazias} de {len(pgs)} páginas vazias). É provável que seja "
                   f"exportado como imagem.\n>\n"
                   f"> **A comparação automática não vale para este documento.** "
@@ -269,9 +275,9 @@ def main():
         for k in chaves:
             la = ", ".join(map(str, sorted(set(ja.get(k, []))))) or "—"
             lb = ", ".join(map(str, sorted(set(jb.get(k, []))))) or "—"
-            marca = " ⚠️" if bool(ja.get(k)) != bool(jb.get(k)) else ""
+            marca = " [!]" if bool(ja.get(k)) != bool(jb.get(k)) else ""
             print(f"| {k}{marca} | {la} | {lb} |")
-        print("\n⚠️ = citado num documento e não no outro. Em calendário de ações "
+        print("\n[!] = citado num documento e não no outro. Em calendário de ações "
               "`(Art. 56º II)`, vale conferir.")
     else:
         print("_Nenhum período nomeado encontrado._")

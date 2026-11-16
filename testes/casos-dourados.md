@@ -65,4 +65,5 @@ Para os casos que precisam de PDFs, use o par de teste gerado por
 
 | Data | Quem rodou | Casos | Erros | Travas 🔒 erradas | Ação |
 |---|---|---|---|---|---|
-| | | | | | |
+| 16/11/2026 | sessão limpa, sem ver o gabarito | 6 | 0 | 0 (6 das 8 travas exercidas) | Achou bug de encoding no inventario.py; corrigido na 1.0.1 |
+| 16/11/2026 | conferência da 1.0.1 | — | — | — | Trava 15 (PDF sem texto) verificada com slides convertidos em imagem: avisa e manda ler visualmente |

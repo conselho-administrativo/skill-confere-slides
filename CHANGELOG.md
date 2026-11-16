@@ -12,6 +12,34 @@ essa cópia não se atualiza sozinha.
 
 ---
 
+## [1.0.1] — 2026-11-16
+
+**Errata.** Correção de bug, sem mudança de regra nem de critério.
+
+### Corrigido
+- **`ferramentas/inventario.py` quebrava no Windows.** O console usa cp1252 e o script
+  morria com `UnicodeEncodeError` ao imprimir o aviso da seção de períodos, saindo com
+  código 1 — justamente a seção que sinaliza período de calendário citado num documento e
+  não no outro. Os acentos das seções anteriores também saíam corrompidos.
+
+  Duas correções: `sys.stdout.reconfigure(encoding="utf-8", errors="replace")` no início do
+  `main()`, e troca de todo emoji por marcador ASCII `[!]`. O script agora roda com exit 0
+  no console cru do Windows, sem precisar de `PYTHONIOENCODING`.
+
+  Achado em teste de comportamento em sessão limpa, não em revisão. Como o público é
+  majoritariamente Windows e o README manda rodar a ferramenta como primeira camada, o bug
+  atingiria quase todo mundo logo no primeiro uso.
+
+### Verificado no mesmo teste
+- As três divergências plantadas no par de teste foram detectadas, sem falso positivo:
+  meta de NPS 60→75, retenção 78%→90% e um valor que só existe no slide.
+- As duas armadilhas foram evitadas: diagnóstico encurtado ficou como condensação, e
+  período ausente do slide ficou como omissão — nenhum dos dois virou achado.
+- Detecção de PDF sem camada de texto confirmada com slides convertidos em imagem: avisa
+  antes de qualquer resultado e manda ler visualmente.
+
+---
+
 ## [1.0.0] — 2026-11-16
 
 Primeira versão. Ciclo 2027, para a etapa Proposta Final e Sabatina.
