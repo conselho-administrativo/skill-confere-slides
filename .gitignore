@@ -1,0 +1,16 @@
+# temporários
+*.tmp
+*.bak
+~$*
+
+# PDFs de teste gerados
+testes/teste_*.pdf
+
+# sistema
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# editores
+.vscode/
+.idea/
